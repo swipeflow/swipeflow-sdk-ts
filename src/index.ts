@@ -5,10 +5,10 @@
  * 
  * @example
  * ```typescript
- * import { SwipeFlowClient } from '@swipeflow/api-client';
+ * import { SwipeFlowClient } from '@swipeflow/api';
  * 
  * const client = new SwipeFlowClient({
- *   BASE: 'https://api.swipeflow.io/v1',
+ *   BASE: 'https://api.swipeflow.io',
  *   HEADERS: {
  *     'X-API-Key': 'your-api-key'
  *   }

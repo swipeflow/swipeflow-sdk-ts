@@ -1,21 +1,21 @@
-# @swipeflow/api-client
+# @swipeflow/api
 
 TypeScript API client for [SwipeFlow](https://swipeflow.io) - the human-in-the-loop approval platform.
 
 ## Installation
 
 ```bash
-npm install @swipeflow/api-client
+npm install @swipeflow/api
 ```
 
 ## Usage
 
 ```typescript
-import { SwipeFlowClient } from '@swipeflow/api-client';
+import { SwipeFlowClient } from '@swipeflow/api';
 
 // Initialize the client
 const client = new SwipeFlowClient({
-  BASE: 'https://api.swipeflow.io/v1',
+  BASE: 'https://api.swipeflow.io',
   HEADERS: {
     'X-API-Key': 'your-api-key-here'
   }

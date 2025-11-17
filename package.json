@@ -1,0 +1,44 @@
+{
+  "name": "@swipeflow/api-client",
+  "version": "0.1.1",
+  "description": "TypeScript API client for SwipeFlow",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "fetch-openapi": "node scripts/fetch-openapi-spec.js",
+    "generate-api": "openapi --input ./openapi.json --output ./src/generated --client axios --name SwipeFlowClient && node scripts/patch-generated-index.js",
+    "build": "tsc",
+    "prepare": "npm run fetch-openapi && npm run generate-api && npm run build",
+    "clean": "rm -rf dist openapi.json src/generated",
+    "prepublishOnly": "npm run prepare",
+    "publish-dry": "npm pack --dry-run"
+  },
+  "keywords": [
+    "swipeflow",
+    "api",
+    "client",
+    "typescript",
+    "sdk"
+  ],
+  "author": {
+    "name": "SwipeFlow Team",
+    "email": "support@swipeflow.io"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swipeflow/swipeflow-ts-api.git"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "openapi-typescript-codegen": "^0.27.0",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

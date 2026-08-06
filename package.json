@@ -1,13 +1,13 @@
 {
   "name": "@swipeflow/api",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "TypeScript API client for SwipeFlow",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "fetch-openapi": "node scripts/fetch-openapi-spec.js",
-    "generate-api": "openapi --input ./openapi.json --output ./src/generated --client axios --name SwipeFlowClient && node scripts/patch-generated-index.js",
-    "build": "tsc",
+    "generate-api": "rm -rf src/generated && openapi --input ./openapi.json --output ./src/generated --client axios --name SwipeFlowClient && node scripts/patch-generated-index.js",
+    "build": "rm -rf dist && tsc",
     "prepare": "npm run fetch-openapi && npm run generate-api && npm run build",
     "clean": "rm -rf dist openapi.json src/generated",
     "prepublishOnly": "npm run prepare",

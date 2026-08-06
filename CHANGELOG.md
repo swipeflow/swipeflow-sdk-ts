@@ -2,6 +2,11 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.3.1] - 2026-08-06
+
+### Fixed
+- `build`/`generate-api` never cleaned their output directories first, so files from a prior generator layout (predating the current `src/generated/` structure — plain `models/`, `services/`, `core/`, `SwipeFlowClient.*` sitting at the top level of `dist/`, dated from before this package's early releases) kept getting bundled into every published tarball on top of the fresh output, undetected because `dist/index.d.ts` only re-exports `./generated` — the stale files were dead weight, never actually reachable through the package's public entry point, not a functional break. `build` now runs `rm -rf dist` first and `generate-api` now runs `rm -rf src/generated` first. Package size for 0.3.0 was 41.6 kB / 398 files; the same content republishes at 31.8 kB / 190 files with this fix.
+
 ## [0.3.0] - 2026-08-06
 
 ### Added

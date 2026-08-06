@@ -2,6 +2,19 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.3.0] - 2026-08-06
+
+### Added
+- Regenerated from the live `/v1` OpenAPI spec to pick up:
+  - `PUT /v1/projects/:id/items/:itemId/processed` — mark an item's decision as processed, the requester-side reconciliation counterpart to (best-effort) webhook delivery (`ItemsService.putV1ProjectsItemsProcessed`)
+  - `processed` field on `Item` (new `ItemProcessed` model: `processedAt`/`processedBy`/`action`), settable once and only from `approved`/`rejected`
+  - `processed` query filter on `GET /v1/projects/:id/items` (`ItemsService.getV1ProjectsItems`), for sweeping everything still outstanding in one call
+  - `item.processed` added to `WebhookEvent`
+  - `ITEM_PROCESSED` added to `NotificationType`
+
+### Notes
+- No breaking changes — `ItemsService.getV1ProjectsItems`'s new `processed` parameter is inserted before the existing `search`/`sortBy`/etc. parameters in the generated method signature; callers using named/positional args in the same order as before will need to pass `undefined` for it, same as any other newly-inserted optional parameter from this generator.
+
 ## [0.2.0] - 2026-08-04
 
 ### Added

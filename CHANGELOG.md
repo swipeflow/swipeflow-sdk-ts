@@ -2,6 +2,17 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.4.0] - 2026-08-09
+
+### Added
+- Regenerated from the live `/v1` OpenAPI spec to pick up:
+  - `notifySelfActions` field on `Settings`/`UpdateSettingsRequest` — whether a user is notified about actions they themselves performed
+  - `autoGridLandscape` field on `Settings`/`UpdateSettingsRequest` — whether the item queue auto-switches to grid view in landscape orientation (mobile/tablet) or on desktop-sized screens
+  - `projectId` query parameter on `GET /v1/analytics/dashboard` (`AnalyticsService.getV1AnalyticsDashboard`) — scope the returned analytics, including recent activity, to a single project
+
+### Notes
+- No breaking changes — all three additions are new optional fields/parameters. `getV1AnalyticsDashboard`'s `projectId` is the method's only parameter, so there's no existing positional-argument call site to shift.
+
 ## [0.3.1] - 2026-08-06
 
 ### Fixed

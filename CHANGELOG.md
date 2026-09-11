@@ -2,6 +2,26 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.6.0] - 2026-09-11
+
+### Added
+- Regenerated from the `/v1` OpenAPI spec to pick up structured media attachments
+  (`swipeflow/swipeflow#352`, building on the `MediaService` from 0.5.0):
+  - `AttachedMedia` model (`id`, `ref`, `fileName`, `contentType`, `size`, optional
+    `url`/`urlTtl`) on `Item.media` and `ItemVersion.media`
+  - `media` (string id array) on `CreateItemRequest`/`CreateItemVersionRequest` — explicit
+    attachment; omitted on a version-create carries the previous version's media forward
+    verbatim, `[]` detaches everything
+  - `resolveMedia` boolean query parameter (default `false`) on every item/version read
+    method (`ItemsService.getV1ProjectsItems*`, `ItemVersionsService.getV1ProjectsItemsVersions*`)
+    — opts into `content.data` substitution and `media[].url`/`urlTtl`; the stable,
+    never-expiring `ref`-only view is the default
+
+### Notes
+- No breaking changes — `media` is a new optional field on the two request types, and
+  `resolveMedia` is a new optional parameter each generated method already defaults.
+- Regenerated against the live `/v1/openapi.json` after `#352` merged and deployed to prod.
+
 ## [0.5.0] - 2026-09-11
 
 ### Added

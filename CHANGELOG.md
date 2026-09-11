@@ -2,6 +2,32 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.5.0] - 2026-09-11
+
+### Added
+- Regenerated from the live `/v1` OpenAPI spec to pick up the new media subsystem
+  (`swipeflow/swipeflow#328`) as a `MediaService`:
+  - `POST /v1/projects/:projectId/media` — request a direct-to-storage upload ticket
+    (`MediaService.postV1ProjectsMedia`); returns a signed upload target plus the media's
+    durable `ref`
+  - `POST /v1/media/:id/finalize` — confirm a completed upload, correcting quota to the
+    actual byte count (`MediaService.postV1MediaFinalize`)
+  - `GET /v1/media/:id` — media metadata, with a signed `contentUrl` once uploaded
+    (`MediaService.getV1Media`)
+  - `GET /v1/media/:id/content` and `GET /media/:id` — redirect to a short-lived signed URL
+    for the bytes (`MediaService.getV1MediaContent`, `MediaService.getMedia`)
+  - `DELETE /v1/media/:id` — tombstone a media object (`MediaService.deleteV1Media`)
+  - `GET /v1/media/usage` — the caller's current media storage usage and plan limit
+    (`MediaService.getV1MediaUsage`)
+
+### Notes
+- No breaking changes — an entirely new service, nothing existing moved or changed shape.
+- As with the rest of this SDK, response bodies for the new endpoints are typed `any`: the
+  backend's OpenAPI spec for `Media` doesn't declare a response schema yet (prose
+  descriptions only), so the generator has nothing to type them from. Callers should treat
+  responses as documented in `backend/src/controllers/MediaController.ts`'s `toResponse()`
+  shape until that's tightened.
+
 ## [0.4.0] - 2026-08-09
 
 ### Added

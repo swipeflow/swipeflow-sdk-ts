@@ -2,6 +2,39 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.7.0] - 2026-09-14
+
+### Changed (breaking)
+- Regenerated from the `/v1` OpenAPI spec for the R2 storage migration and media read-model
+  redesign (`swipeflow/swipeflow#361`, `docs/media/DESIGN.md`). Per that document's clean-break
+  policy, the first media API is replaced rather than deprecated:
+  - `MediaService.postV1ProjectsMedia` → `postV1ProjectsMediaUploads`
+    (`POST /v1/projects/:projectId/media-uploads`), same 3-step signed-upload shape but the
+    response's `upload` object now pins `Content-Length`/`If-None-Match: *` alongside
+    `Content-Type`.
+  - The confirmation step is `postV1MediaUploadsConfirm`
+    (`POST /v1/media-uploads/:id/confirm`) — `finalize` naming is gone.
+  - `MediaDescriptor` drops the old GCS/CRC32C-era fields; it now carries `status`
+    (`upload_pending | import_pending | uploaded | delete_pending | deleted`), `itemIds`,
+    an opaque storage `etag`, and an optional client-supplied `md5`.
+
+### Added
+- `postV1ProjectsMediaImports` (`POST /v1/projects/:projectId/media-imports`) — start an
+  asynchronous, Workflow-backed capture of an expiring source URL; returns `202` with the
+  media in `import_pending`. Poll `getV1Media` for the result; the source URL itself is
+  never persisted or returned.
+- `getV1ProjectsMedia` / `getV1ProjectsMediaUsage` — cursor-paginated project media listing
+  and project usage/limit reporting.
+- `deleteV1Media` — delete unattached media (`409` while attached).
+- Hand-written `mediaRef`/`mediaRefPattern`/`extractMediaRefs` helpers (`src/media.ts`,
+  not generated) for the opaque `media://<id>` durable reference described in
+  `docs/media/DESIGN.md` §3 — format one, get a reusable match pattern, or pull every
+  distinct id referenced in a content string.
+
+### Notes
+- No production consumer of the first media API existed, so this ships as one coordinated,
+  non-additive contract change rather than a compatibility window (`docs/media/DESIGN.md` §14).
+
 ## [0.6.0] - 2026-09-11
 
 ### Added

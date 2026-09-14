@@ -27,3 +27,6 @@
 
 // Re-export everything from the generated client
 export * from './generated';
+
+// Hand-written helpers (not part of the generated client)
+export * from './media';

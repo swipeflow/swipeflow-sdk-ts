@@ -49,6 +49,7 @@ This client is automatically generated from the SwipeFlow OpenAPI specification 
 
 - **projects** - Project management
 - **items** - Item creation and retrieval
+- **media** - Direct-to-storage uploads, URL imports, and media metadata/listing
 - **users** - User profile management
 - **apiKeys** - API key management
 - **analytics** - Usage analytics

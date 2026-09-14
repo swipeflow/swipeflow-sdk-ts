@@ -2,6 +2,25 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.8.0] - 2026-09-14
+
+### Changed (breaking)
+- Regenerated to follow the URL-import endpoint's shape change landed right behind 0.7.0
+  (`swipeflow/swipeflow#363`, implementing the Workflow-backed import `docs/media/DESIGN.md`
+  §4.3 describes):
+  - `MediaService.postV1ProjectsMediaImports` (`POST /v1/projects/:projectId/media-imports`)
+    → `postV1ProjectsMediaImportUrl` (`POST /v1/projects/:projectId/media/import-url`).
+  - The request body's `filename` is now `fileName`, matching every other media request/
+    response field's casing.
+  - The internal Workflow result-callback endpoint is no longer part of this spec at all —
+    it now lives outside `routes/v1/` (`routes/integrationsRoutes.ts`) since its only caller
+    is the Workflow itself, never an API consumer.
+
+### Added
+- `MediaDescriptor` gains `importError`, `importErrorCode`, and `importFailedAt` — a failed
+  URL import's terminal diagnosis, present once a `get_media`/list read observes it past
+  `import_pending`.
+
 ## [0.7.0] - 2026-09-14
 
 ### Changed (breaking)

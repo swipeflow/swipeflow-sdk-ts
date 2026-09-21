@@ -5,6 +5,11 @@ All notable changes to the SwipeFlow TypeScript API Client will be documented in
 ## [0.8.0] - 2026-09-21
 
 ### Changed (breaking)
+- The package is now published as `@swipeflow/sdk` (it was `@swipeflow/api`). Replace the dependency and the
+  import path; the client class is still `SwipeFlowClient`. `@swipeflow/api` will not receive further releases.
+- The generated sources (`src/generated`) are now committed, so changes to the API show up as reviewable diffs.
+  `npm run generate` refreshes them from the live spec, `npm run build` only compiles, and publishing refuses
+  to proceed if the committed sources are out of date.
 - The `/v1` OpenAPI spec now declares an `operationId` for every operation, so generated method names no
   longer derive from the URL. All 70 methods are renamed; parameters, request bodies and return types are
   unchanged. Old → new, by client property:

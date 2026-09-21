@@ -5,7 +5,7 @@
  * 
  * @example
  * ```typescript
- * import { SwipeFlowClient } from '@swipeflow/api';
+ * import { SwipeFlowClient } from '@swipeflow/sdk';
  * 
  * const client = new SwipeFlowClient({
  *   BASE: 'https://api.swipeflow.io',

@@ -1,24 +1,24 @@
 {
-  "name": "@swipeflow/api",
+  "name": "@swipeflow/sdk",
   "version": "0.8.0",
-  "description": "TypeScript API client for SwipeFlow",
+  "description": "TypeScript SDK for SwipeFlow",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "fetch-openapi": "node scripts/fetch-openapi-spec.js",
     "generate-api": "rm -rf src/generated && openapi --input ./openapi.json --output ./src/generated --client axios --name SwipeFlowClient && node scripts/patch-generated-index.js",
+    "generate": "npm run fetch-openapi && npm run generate-api",
     "build": "rm -rf dist && tsc",
-    "prepare": "npm run fetch-openapi && npm run generate-api && npm run build",
-    "clean": "rm -rf dist openapi.json src/generated",
-    "prepublishOnly": "npm run prepare",
+    "prepare": "npm run build",
+    "clean": "rm -rf dist openapi.json",
+    "prepublishOnly": "npm run generate && git diff --exit-code -- src/generated",
     "publish-dry": "npm pack --dry-run"
   },
   "keywords": [
     "swipeflow",
-    "api",
+    "sdk",
     "client",
-    "typescript",
-    "sdk"
+    "typescript"
   ],
   "author": {
     "name": "SwipeFlow Team",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swipeflow/swipeflow-ts-api.git"
+    "url": "https://github.com/swipeflow/swipeflow-sdk-ts.git"
   },
   "files": [
     "dist",

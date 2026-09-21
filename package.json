@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swipeflow/swipeflow-api-ts.git"
+    "url": "https://github.com/swipeflow/swipeflow-ts.git"
   },
   "files": [
     "dist",

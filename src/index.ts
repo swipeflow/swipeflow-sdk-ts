@@ -15,10 +15,10 @@
  * });
  * 
  * // List projects
- * const projects = await client.projects.getV1Projects();
+ * const projects = await client.projects.listProjects();
  * 
  * // Create an item
- * const item = await client.items.postV1ProjectsItems('project-id', {
+ * const item = await client.items.createItem('project-id', {
  *   title: 'Review this',
  *   content: { type: 'text', data: 'Content to review' }
  * });

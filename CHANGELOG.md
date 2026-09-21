@@ -2,6 +2,108 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.8.0] - 2026-09-21
+
+### Changed (breaking)
+- The `/v1` OpenAPI spec now declares an `operationId` for every operation, so generated method names no
+  longer derive from the URL. All 70 methods are renamed; parameters, request bodies and return types are
+  unchanged. Old → new, by client property:
+
+  - `client.analytics`
+    - `getV1AnalyticsDashboard` → `getDashboardAnalytics`
+  - `client.apiKeys`
+    - `deleteV1ApiKeys` → `deleteApiKey`
+    - `getV1ApiKeys` → `listApiKeys`
+    - `patchV1ApiKeys` → `updateApiKey`
+    - `postV1ApiKeys` → `createApiKey`
+  - `client.billing`
+    - `getV1Billing` → `getBilling`
+    - `getV1BillingInvoices` → `listBillingInvoices`
+  - `client.itemVersions`
+    - `getV1ProjectsItemsVersions` → `listItemVersions`
+    - `getV1ProjectsItemsVersions1` → `getItemVersion`
+    - `postV1ProjectsItemsVersions` → `createItemVersion`
+  - `client.items`
+    - `deleteV1ProjectsItems` → `deleteItem`
+    - `getV1ProjectsItems` → `listItems`
+    - `getV1ProjectsItemsStatus` → `getItemStatuses`
+    - `getV1ProjectsItems1` → `getItem`
+    - `getV1ProjectsItemsStatus1` → `getItemStatus`
+    - `getV1ProjectsNextItem` → `getNextItem`
+    - `postV1ProjectsAddTestItems` → `addTestItems`
+    - `postV1ProjectsItems` → `createItem`
+    - `putV1ProjectsItemsDecision` → `updateItemDecision`
+    - `putV1ProjectsItemsProcessed` → `markItemProcessed`
+  - `client.media`
+    - `deleteV1Media` → `deleteMedia`
+    - `getV1Media` → `getMedia`
+    - `getV1MediaContent` → `getMediaContent`
+    - `getV1ProjectsMedia` → `listProjectMedia`
+    - `getV1ProjectsMediaUsage` → `getProjectMediaUsage`
+    - `postV1MediaUploadsConfirm` → `confirmMediaUpload`
+    - `postV1ProjectsMediaUploads` → `createMediaUpload`
+    - `postV1ProjectsMediaImportUrl` → `importMediaFromUrl`
+  - `client.notifications`
+    - `deleteV1Notifications` → `deleteAllNotifications`
+    - `deleteV1NotificationsDevices` → `removeNotificationDevice`
+    - `deleteV1Notifications1` → `deleteNotification`
+    - `getV1Notifications` → `listNotifications`
+    - `getV1NotificationsUnreadCount` → `getUnreadNotificationCount`
+    - `postV1NotificationsDevices` → `registerNotificationDevice`
+    - `putV1NotificationsReadAll` → `markAllNotificationsRead`
+    - `putV1NotificationsRead` → `markNotificationRead`
+  - `client.projectMembers`
+    - `deleteV1ProjectsMembers` → `removeProjectMember`
+    - `postV1ProjectsMembers` → `addProjectMember`
+    - `putV1ProjectsMembers` → `updateProjectMember`
+  - `client.projectTriggers`
+    - `deleteV1ProjectsTriggers` → `deleteTrigger`
+    - `getV1ProjectsTriggers` → `listTriggers`
+    - `postV1ProjectsTriggers` → `createTrigger`
+    - `postV1ProjectsTriggersRun` → `runTrigger`
+    - `putV1ProjectsTriggers` → `updateTrigger`
+  - `client.projectWebhooks`
+    - `deleteV1ProjectsWebhooks` → `deleteWebhook`
+    - `getV1ProjectsWebhookLogs` → `listProjectWebhookLogs`
+    - `getV1ProjectsWebhooks` → `listWebhooks`
+    - `getV1ProjectsWebhooksLogs` → `getWebhookLogs`
+    - `postV1ProjectsWebhooks` → `createWebhook`
+    - `postV1ProjectsWebhooksTest` → `testWebhook`
+    - `putV1ProjectsWebhooks` → `updateWebhook`
+  - `client.projects`
+    - `deleteV1Projects` → `deleteProject`
+    - `getV1Projects` → `listProjects`
+    - `getV1Projects1` → `getProject`
+    - `getV1ProjectsAuditEvents` → `listProjectAuditEvents`
+    - `patchV1ProjectsSettings` → `updateProjectSettings`
+    - `postV1Projects` → `createProject`
+    - `postV1ProjectsResolve` → `resolveProject`
+    - `postV1ProjectsToggleArchived` → `toggleProjectArchived`
+    - `postV1ProjectsToggleStarred` → `toggleProjectStarred`
+    - `putV1Projects` → `updateProject`
+  - `client.settings`
+    - `getV1Settings` → `getUserSettings`
+    - `putV1Settings` → `updateUserSettings`
+  - `client.users`
+    - `deleteV1UsersProfile` → `deleteUserAccount`
+    - `getV1UsersAuditEvents` → `listUserAuditEvents`
+    - `getV1UsersProfile` → `getUserProfile`
+    - `getV1UsersRecentProjects` → `listRecentProjects`
+    - `getV1UsersStorageUse` → `getUserStorageUse`
+    - `putV1UsersProfile` → `updateUserProfile`
+    - `putV1UsersProfilePicture` → `updateUserProfilePicture`
+
+### Removed
+- Private billing operations are no longer part of the public spec, so `client.billing` only has
+  `getBilling` (`GET /v1/billing`) and `listBillingInvoices` (`GET /v1/billing/invoices`). Removed:
+  - `getV1BillingPlans`
+  - `postV1BillingAttribution`
+  - `postV1BillingCheckoutSession`
+  - `postV1BillingPortalSession`
+  - `postV1BillingRefresh`
+  - `postV1BillingResume`
+  - `postV1BillingSeats`
+
 ## [0.7.0] - 2026-09-14
 
 ### Changed (breaking)

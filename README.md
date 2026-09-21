@@ -22,10 +22,10 @@ const client = new SwipeFlowClient({
 });
 
 // List all projects
-const projects = await client.projects.getV1Projects();
+const projects = await client.projects.listProjects();
 
 // Create an item for review
-const item = await client.items.postV1ProjectsItems('project-id', {
+const item = await client.items.createItem('project-id', {
   title: 'Review this document',
   description: 'Please review and approve',
   content: {
@@ -35,7 +35,7 @@ const item = await client.items.postV1ProjectsItems('project-id', {
 });
 
 // Make a decision on an item
-await client.items.putV1ProjectsItemsDecision('project-id', 'item-id', {
+await client.items.updateItemDecision('project-id', 'item-id', {
   decision: 'approved',
   comment: 'Looks good!'
 });

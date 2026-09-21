@@ -1,17 +1,17 @@
-# @swipeflow/api
+# @swipeflow/sdk
 
-TypeScript API client for [SwipeFlow](https://swipeflow.io) - the human-in-the-loop approval platform.
+TypeScript SDK for [SwipeFlow](https://swipeflow.io) - the human-in-the-loop approval platform.
 
 ## Installation
 
 ```bash
-npm install @swipeflow/api
+npm install @swipeflow/sdk
 ```
 
 ## Usage
 
 ```typescript
-import { SwipeFlowClient } from '@swipeflow/api';
+import { SwipeFlowClient } from '@swipeflow/sdk';
 
 // Initialize the client
 const client = new SwipeFlowClient({
@@ -62,6 +62,18 @@ Get your API key from the [SwipeFlow Dashboard](https://app.swipeflow.io/setting
 
 - [API Documentation](https://swipeflow.io/docs/api)
 - [SwipeFlow Documentation](https://swipeflow.io/docs)
+
+## Development
+
+Everything under `src/generated` is generated from the public OpenAPI spec and committed; never edit it by hand.
+
+```bash
+npm ci
+npm run generate   # download https://api.swipeflow.io/v1/openapi.json and regenerate src/generated
+npm run build      # compile to dist/
+```
+
+Commit the resulting changes to `src/generated`. Publishing runs `npm run generate` first and refuses to publish if the committed sources are out of date.
 
 ## License
 

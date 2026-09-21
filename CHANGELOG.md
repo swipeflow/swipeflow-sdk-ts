@@ -5,10 +5,9 @@ All notable changes to the SwipeFlow TypeScript API Client will be documented in
 ## [0.8.0] - 2026-09-21
 
 ### Changed (breaking)
-- The `/v1` OpenAPI spec now declares an `operationId` for every operation (swipeflow/swipeflow#378), so
-  generated method names no longer derive from the URL. All 77 methods are renamed; parameters,
-  request bodies and return types are unchanged. `AuthenticationService` and `AdminService` are not part of
-  this package and are unaffected. Old → new, by client property:
+- The `/v1` OpenAPI spec now declares an `operationId` for every operation, so generated method names no
+  longer derive from the URL. All 70 methods are renamed; parameters, request bodies and return types are
+  unchanged. Old → new, by client property:
 
   - `client.analytics`
     - `getV1AnalyticsDashboard` → `getDashboardAnalytics`
@@ -20,13 +19,6 @@ All notable changes to the SwipeFlow TypeScript API Client will be documented in
   - `client.billing`
     - `getV1Billing` → `getBilling`
     - `getV1BillingInvoices` → `listBillingInvoices`
-    - `getV1BillingPlans` → `listBillingPlans`
-    - `postV1BillingAttribution` → `recordBillingAttribution`
-    - `postV1BillingCheckoutSession` → `createCheckoutSession`
-    - `postV1BillingPortalSession` → `createPortalSession`
-    - `postV1BillingRefresh` → `refreshBilling`
-    - `postV1BillingResume` → `resumeSubscription`
-    - `postV1BillingSeats` → `updateBillingSeats`
   - `client.itemVersions`
     - `getV1ProjectsItemsVersions` → `listItemVersions`
     - `getV1ProjectsItemsVersions1` → `getItemVersion`
@@ -100,6 +92,17 @@ All notable changes to the SwipeFlow TypeScript API Client will be documented in
     - `getV1UsersStorageUse` → `getUserStorageUse`
     - `putV1UsersProfile` → `updateUserProfile`
     - `putV1UsersProfilePicture` → `updateUserProfilePicture`
+
+### Removed
+- Private billing operations are no longer part of the public spec, so `client.billing` only has
+  `getBilling` (`GET /v1/billing`) and `listBillingInvoices` (`GET /v1/billing/invoices`). Removed:
+  - `getV1BillingPlans`
+  - `postV1BillingAttribution`
+  - `postV1BillingCheckoutSession`
+  - `postV1BillingPortalSession`
+  - `postV1BillingRefresh`
+  - `postV1BillingResume`
+  - `postV1BillingSeats`
 
 ## [0.7.0] - 2026-09-14
 

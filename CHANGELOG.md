@@ -2,6 +2,20 @@
 
 All notable changes to the SwipeFlow TypeScript API Client will be documented in this file.
 
+## [0.9.0] - 2026-10-24
+
+### Changed (breaking)
+- Regenerated from the public spec, which now covers only SwipeFlow's domain API. The platform services are gone
+  from the client: `billing`, `apiKeys`, `notifications`, `settings` and `users`. Ids are UUIDs.
+
+### Added
+- Webhook delivery methods on the webhooks service: deliveries, replay, backfill, cursor, events, secret rotation
+  and reactivation.
+
+### Fixed
+- `extractMediaRefs` and `mediaRefPattern` recognise `media://<uuid>` references. The pattern only matched
+  24-character hex ids, so refs to new media were not detected. The legacy 24-hex form still matches.
+
 ## [0.8.0] - 2026-09-21
 
 ### Changed (breaking)

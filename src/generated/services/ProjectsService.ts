@@ -24,12 +24,8 @@ export class ProjectsService {
      * @param limit Number of items per page
      * @param status Filter projects by status
      * @param starred Filter projects by starred status
-     * @param includeAll Include all projects (admin only - has no effect for non-admin users)
-     * @param memberUserId Admin only - restrict the listing to projects this user is a member of
-     * @param ownerUserId Admin only - restrict the listing to projects this user owns
      * @param createdFrom ISO date/datetime lower bound on project creation
      * @param createdTo ISO date/datetime upper bound on project creation (bare date = inclusive)
-     * @param ownerStatus Admin only - restrict the listing to projects whose OWNER member's user account no longer exists
      * @returns ProjectList List of projects with pagination information
      * @throws ApiError
      */
@@ -41,12 +37,8 @@ export class ProjectsService {
         limit: number = 20,
         status?: 'active' | 'archived',
         starred?: boolean,
-        includeAll: boolean = false,
-        memberUserId?: string,
-        ownerUserId?: string,
         createdFrom?: string,
         createdTo?: string,
-        ownerStatus?: 'orphaned',
     ): CancelablePromise<ProjectList> {
         return this.httpRequest.request({
             method: 'GET',
@@ -59,12 +51,8 @@ export class ProjectsService {
                 'limit': limit,
                 'status': status,
                 'starred': starred,
-                'includeAll': includeAll,
-                'memberUserId': memberUserId,
-                'ownerUserId': ownerUserId,
                 'createdFrom': createdFrom,
                 'createdTo': createdTo,
-                'ownerStatus': ownerStatus,
             },
             errors: {
                 401: `Unauthorized`,

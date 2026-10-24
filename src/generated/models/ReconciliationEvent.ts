@@ -2,10 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-/**
- * Type of webhook
- */
-export enum WebhookType {
-    USER = 'user',
-    DYNAMIC = 'dynamic',
-}
+export type ReconciliationEvent = {
+    id?: string;
+    type?: string;
+    createdAt?: string;
+    data?: Record<string, any>;
+};
+

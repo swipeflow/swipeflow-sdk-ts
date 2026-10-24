@@ -3,17 +3,22 @@
 /* tslint:disable */
 /* eslint-disable */
 export type WebhookTest = {
+    id?: string;
+    status?: WebhookTest.status;
     /**
-     * Whether the test was successful
+     * HTTP response status code, when the request reached the receiver
      */
-    success?: boolean;
-    /**
-     * Test result message
-     */
-    message?: string;
-    /**
-     * HTTP status code from webhook endpoint
-     */
-    statusCode?: number;
+    statusCode?: number | null;
+    latencyMs?: number | null;
+    error?: string | null;
+    responseSnippet?: string | null;
+    completedAt?: string | null;
 };
+export namespace WebhookTest {
+    export enum status {
+        QUEUED = 'queued',
+        SUCCEEDED = 'succeeded',
+        FAILED = 'failed',
+    }
+}
 

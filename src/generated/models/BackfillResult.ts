@@ -2,10 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UnreadCount = {
-    /**
-     * Number of unread notifications
-     */
-    count?: number;
+export type BackfillResult = {
+    enqueuedCount?: number;
 };
 

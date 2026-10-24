@@ -2,7 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ActivityType } from './ActivityType';
 import type { ItemStatus } from './ItemStatus';
 export type DashboardAnalytics = {
     /**
@@ -57,7 +56,10 @@ export type DashboardAnalytics = {
          * Activity timestamp
          */
         timestamp?: string;
-        activityType?: ActivityType;
+        /**
+         * The item's last decision, or Created
+         */
+        activityType?: string;
         /**
          * User who performed the action
          */
